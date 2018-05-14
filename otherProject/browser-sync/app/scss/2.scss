@@ -1,0 +1,5 @@
+@mixin fu(){
+    border:1px sold #ccc;
+}
+
+.fu{@include fu;}
