@@ -1,0 +1,11 @@
+安装：
+// 创建package.json文件
+npm init
+
+//全局安装
+npm install -g webpack
+//安装到你的项目目录
+npm install --save-dev webpack
+
+//安装webpack-cli(是因为到了webpack4, webpack 已经将 webpack 命令行相关的内容都迁移到 webpack-cli，所以除了 webpack 外，我们还需要安装 webpack-cli)
+npm install --save-dev webpack-cli -g(-g全局)
