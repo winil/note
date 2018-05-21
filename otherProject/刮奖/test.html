@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+</head>
+<style> 
+canvas{width: 332px;height: 119px;}
+</style>
+<body>
+<canvas></canvas>
+</body>
+
+
+<script>
+    loadCard();
+    function loadCard(){
+        var cleanCount = 0;
+        (function(bodyStyle){
+            bodyStyle.mozUserSelect = 'none';
+            bodyStyle.webkitUserSelect = 'none';
+            var img = new Image();
+            var canvas = document.querySelector('canvas');
+            canvas.style.backgroundColor='transparent';
+            canvas.style.position = 'absolute';
+            img.addEventListener('load',function(e){
+                var ctx;
+                var w = 365, h = 131;
+                var offsetX = canvas.offsetLeft, offsetY = canvas.offsetTop;
+                var mousedown = false;
+                function layer(ctx){
+
+                    ctx.beginPath();
+                    ctx.fillStyle = '#cfcfcf';
+                    ctx.fillRect(0, 0, w, h);
+
+                    ctx.beginPath();
+                    ctx.font = "Bold 20px Arial"
+                    ctx.textAlign = "center";
+                    ctx.fillStyle = "#fff"
+                    ctx.fillText("请长按鼠标左键涂抹刮开有惊喜", 180, 70);
+
+                }
+                function eventDown(e){
+                    e.preventDefault();
+                    mousedown=true;
+                }
+                function eventUp(e){
+                    e.preventDefault();
+                    mousedown=false;
+                }
+                function eventMove(e){
+                    e.preventDefault();
+                    if(mousedown){
+                        cleanCount++;
+                        flagCount = true;
+                        if(e.changedTouches){
+                            e=e.changedTouches[e.changedTouches.length-1];
+                        }
+                        var x = e.offsetX,
+                        y = e.offsetY;
+                        with(ctx){
+                            beginPath()
+                            arc(x, y, 15, 0, Math.PI * 2);
+                            fill();
+                        }
+                        //console.log(cleanCount)
+                        if (cleanCount == 150) {
+                            with(ctx){
+                                clearRect(0,0,w,h);
+                            }
+                        }
+                    }
+                }
+                canvas.width=w;
+                canvas.height=h;
+                canvas.style.backgroundImage='url('+img.src+')';
+                ctx=canvas.getContext('2d');
+                ctx.clearRect(0,0,w,h);
+                layer(ctx);
+                ctx.globalCompositeOperation = 'destination-out';
+                canvas.addEventListener('touchstart', eventDown);
+                canvas.addEventListener('touchend', eventUp);
+                canvas.addEventListener('touchmove', eventMove);
+                canvas.addEventListener('mousedown', eventDown);
+                canvas.addEventListener('mouseup', eventUp);
+                canvas.addEventListener('mousemove', eventMove);
+            });
+
+            img.src ='./imgs/ditu.png';
+
+        })(document.body.style);
+    }
+</script>
+</body>
+</html>
