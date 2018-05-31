@@ -1,0 +1,184 @@
+/* max-height: 100000px; == 在X5新内核Blink中，在排版页面的时候，会主动对字体进行放大，会检测页面中的主字体，当某一块字体在我们的判定规则中，认为字号较小，并且是页面中的主要字体，就会采取主动放大的操作。然而这不是我们想要的，可以采取给最大高度解决 */
+* {box-sizing: border-box;max-height: 100000px;}
+*:before, *:after {box-sizing: border-box;max-height: 100000px;}
+*, *:before, *:after {-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th,textarea, td {
+  border: 0 none;
+  font-size: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","\5FAE\8F6F\96C5\9ED1",Arial,sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
+    font-size: 0.24rem;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);/*ios android去除自带阴影的样式*/
+	-webkit-text-size-adjust:none;/*使chrome浏览器支持12px以下的字体*/
+	outline: 0;
+}
+
+a {text-decoration: none;}
+em,i{font-style: normal;}
+em, strong {font-style: normal;}
+ul, ol, li {list-style: none;}
+h1, h2, h3, h4, h5, h6 {font-weight: normal;}
+table { border-collapse: collapse; border-spacing: 0; }
+input, textarea, select { padding: 0;-webkit-box-shadow: none;-webkit-appearance:none} /*屏蔽阴影:在iOS上，输入框默认有内部阴影*/
+button,input {border: none;background: none;-webkit-appearance: none;outline: none;}
+::-webkit-input-placeholder {color: #dddddd;}/*修改input属性placeholder默认颜色*/
+
+/*
+Name:			style_clearfix
+Example:		class="clearfix|cl"
+Explain:		Clearfix（简写cl）避免因子元素浮动而导致的父元素高度缺失的问题
+*/
+.cl:after,.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}.cl,.clearfix{zoom:1}
+.clear{ clear:both; display: block; height: 0; line-height: 0; font-size: 0; visibility: hidden;}
+.fl{float:left;}
+.fr{float:right;}
+
+/*
+#新式盒模型布局#
+flexbox：定义布局为盒模型
+column：盒模型垂直布局(默认是水平布局)
+flexbox-flex：子元素占据剩余的空间
+align-center：子元素垂直居中
+pack-center：子元素水平居中
+pack-justify：子元素两端对齐
+
+#老式盒模型布局#
+flexboxs: 定义布局为盒模型;
+.flexboxs > *：子元素占据剩余的空间
+
+兼容性：ios 4+、android 2.3+、winphone8+
+*/
+.flexbox{display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-flex-flow: row wrap;-ms-flex-flow: row wrap; flex-flow: row wrap;}
+.flexbox.column{-webkit-box-orient:vertical;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
+.flexbox-flex{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;}
+.flexbox.align-center{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;}
+.flexbox.pack-center{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+.flexbox.pack-justify{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+.flexboxs{display: -webkit-box;display: -moz-box;display: -ms-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}
+.flexboxs > * {display: block;-webkit-box-flex: 1;-moz-box-flex: 1;-ms-box-flex: 1;-webkit-flex:1;flex:1;}
+
+
+/*最外层容器*/
+.container {position: relative;max-width: 10rem;margin: 0 auto;}
+/*页面主体*/
+.page-main{padding-bottom: 0.88rem;}
+
+a.block{display: block;}
+a.inline-block{display: inline-block;}
+
+/* 文字省略 */
+.ellipsis{text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+
+/*fixed遮罩层*/
+.fixed-lay{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 9;background-color: rgba(0, 0, 0, 0.6);}
+
+/*display:table布局*/
+.tablebox {display: table;}
+.table-row {display: table-row;}
+.table-cell {display: table-cell;}
+
+/*线条样式*/
+.ui-border{border: 1px solid #e1e1e1;}
+.ui-border-t{border-top: 1px solid #e1e1e1;}
+.ui-border-b{border-bottom: 1px solid #e1e1e1;}
+
+/*a标签按钮*/
+.abtn{display: block;width: auto;height: auto;text-align: center;color: #fff;background-repeat: no-repeat;background-size: 100% 100%;}
+.abtn-pink{background-image:url('../images/common/button_pink.png');}
+.abtn-gray{background-image:url('../images/common/button_gray.png');}
+.abtn.disabled{background-image:url('../images/common/button_gray.png');}
+
+/*input标签(input="button")按钮*/
+.ui-btn{display: block;height: .88rem;line-height: .88rem;width: 6.1rem;font-size: .28rem;margin:0 auto;border: none;transition: background-color 0.2s ease-out;
+	text-decoration: none;text-align: center;font-family: Microsoft YaHei,Simsun,Arial,Helvetica,sans-serif;color: #FFF;
+	border-radius: .5rem;-webkit-border-radius: .5rem;-ms-border-radius: .5rem;-o-border-radius: .5rem;-moz-border-radius: .5rem;
+}
+.uibtn-pink{
+	filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=rgba(250, 37, 55, 0.65),endcolorstr=#fa2537,gradientType=0);
+    -ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=rgba(250, 37, 55, 0.65),endcolorstr=#fa2537,gradientType=0);
+	background:#fa2537; /* 一些不支持背景渐变的浏览器 */
+    background:-moz-linear-gradient(top, rgba(250, 37, 55, 0.65), #fa2537);
+    background: -webkit-gradient(linear, 0 40%, 0 bottom, from(rgba(250, 37, 55, 0.7)), to(#fa2537));
+    background: -o-linear-gradient(top, rgba(250, 37, 55, 0.65), #fa2537);
+    background: -ms-linear-gradient(top, rgba(250, 37, 55, 0.65), #fa2537);
+}
+.uibtn-gray{background-color: #cccccc;}
+
+/*input[type=text]*/
+.ui-item{display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-flex-flow: row wrap;flex-flow: row wrap;position: relative;}
+.ui-item .label{height:.4rem;width:auto;text-align:right;font-size: .28rem;color: #666666;display: block;}
+.ui-item .rcon{position: relative;}
+.ui-item .ui-input{font-size: .28rem;height: .4rem;}
+
+/*错误提示*/
+.layui-hf {bottom: 15%;left: 50%;margin: 0;padding: 0;position: fixed;transform: translateX(-50%);-webkit-transform: translateX(-50%);}
+.layui-hf-dialog .layui-hf-hui {min-width:4rem;max-width: 5rem;background-color: #000;filter: alpha(opacity=60);background-color: rgba(0,0,0,.6);color: #fff;border: none;-webkit-overflow-scrolling: touch;animation: bounceIna .3s,bounceInb .3s ease-out 2.5s forwards;-webkit-animation: bounceIna .3s,bounceInb .3s ease-out 2.5s forwards;border-radius: 2px;}
+.layui-hf-dialog .layui-hf-content {position: relative;padding: .24rem .3rem;text-align: center;line-height: .4rem;word-break: break-all;overflow: hidden;font-size: .25rem;overflow-x: hidden;overflow-y: auto;}
+@keyframes bounceIna{
+	0% {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
+	50% {opacity: 1;-webkit-transform: scale(1.02);transform: scale(1.02);}
+	70% {-webkit-transform: scale(0.97);transform: scale(0.97);}
+	100% {-webkit-transform: scale(1);transform: scale(1);}
+}
+@keyframes bounceInb{
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+@-webkit-keyframes bounceIna{
+	0% {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
+	50% {opacity: 1;-webkit-transform: scale(1.02);transform: scale(1.02);}
+	70% {-webkit-transform: scale(0.97);transform: scale(0.97);}
+	100% {-webkit-transform: scale(1);transform: scale(1);}
+}
+@-webkit-keyframes bounceInb{
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+/*加载中*/
+.ui-dialog {position: fixed;top: 0px;left: 0px;width: 100%;height: 100%;z-index: 99999;display: -webkit-box;-webkit-box-orient: horizontal;-webkit-box-pack: center;-webkit-box-align: center;background: rgba(0, 0, 0, 0.4);display: none;color: #000;pointer-events: auto;}
+.ui-dialog.show {display:-webkit-box; display:box;}
+.ui-dialog .ui-dialog-cnt {border-radius: 6px;width: 270px;background-clip: padding-box;outline: none;pointer-events: auto;background-color: rgba(253, 253, 253, 0.95);position: relative;-webkit-animation: bounceInBig 0.3s;animation: bounceInBig 0.3s;}
+.ui-dialog-notice .ui-dialog-cnt {width: 130px;height: 110px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-box-pack: center;-webkit-box-align: center;text-align: center;background: rgba(0, 0, 0, 0.65);border-radius: 6px;color: #fff;}
+.ui-loading-bright {width: 37px;height: 37px;display: block;background-image: url('../images/common/loading_sprite_white.png');background-size: auto 37px;  -webkit-animation: rotate2 1s steps(12) infinite;animation: rotate2 1s steps(12) infinite;}
+.ui-loading-text{font-size: 14px;margin-top: 5px;}
+@-webkit-keyframes bounceInBig {
+	0% {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
+	50% {opacity: 1;-webkit-transform: scale(1.02);transform: scale(1.02);}
+	70% {-webkit-transform: scale(0.97);transform: scale(0.97);}
+	100% {-webkit-transform: scale(1);transform: scale(1);}
+}
+@keyframes bounceInBig {
+	0% {opacity: 0;-webkit-transform: scale(0);transform: scale(0);}
+	50% {opacity: 1;-webkit-transform: scale(1.02);transform: scale(1.02);}
+	70% {-webkit-transform: scale(0.97);transform: scale(0.97);}
+	100% {-webkit-transform: scale(1);transform: scale(1);}
+}
+@-webkit-keyframes rotate2 {
+	from {background-position: 0 0;}
+	to {background-position: -444px 0;}
+}
+@keyframes rotate2 {
+	from {background-position: 0 0;}
+	to {background-position: -444px 0;}
+}
+
+/*头部*/
+.ui-header{width: 100%;position: relative;background-color: #fff;border-bottom: 1px solid #e1e1e1;}
+.ui-header .dir-left{width: .48rem;height: .48rem;background: url(../images/common/dir_left_pay.png) no-repeat center;background-size: .18rem .34rem;position: absolute;top: .2rem;left: .1rem;}
+.ui-header .title{color: #333333;font-size: .32rem;text-align: center;padding: .2rem 0;}
+.ui-header .dir-right{width: .48rem;height: .48rem;position: absolute;top: .2rem;right: 0;}
+
+/*错误页: error.html*/
+.error-info img{width: 1.65rem;height: 1.92rem;display: block;margin: 2.5rem auto 1rem;}
+.error-info .text{font-size: .28rem;color: #999999;text-align: center;}

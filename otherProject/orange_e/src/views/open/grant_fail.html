@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no,email=no" />
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<script type="text/javascript" src="../../js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<title>银行授权</title>
+	<script type="text/javascript">
+		(function (doc, win) {var docEl = doc.documentElement,resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',recalc = function () {var clientWidth = docEl.clientWidth;if (!clientWidth) return;if(clientWidth>=750){docEl.style.fontSize = '50px';}else{docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';}};if (!doc.addEventListener) return;win.addEventListener(resizeEvt, recalc, false);doc.addEventListener('DOMContentLoaded', recalc, false);})(document, window);
+	</script>
+</head>
+<body style="background-color:#fff;">
+	<div class="container">
+		<div class="bank-grant">
+			<div class="grant-info">
+				<img src="../../images/open/grant_fail.png" class="pic" />
+				<p class="result">授权失败！</p>
+				<div class="fail-reason">
+					<p>认证失败的原因如下</p>
+					<p>1.未收到短信验证码，请重新认证</p>
+					<p>2.您未能通过短信回复确认开通银行授权</p>
+					<p>3.超过有效时间</p>
+				</div>
+			</div>
+			<div class="btn-box">
+				<input type="button" class="ui-btn uibtn-pink submit-sure" id="submit-sure" value="确认" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

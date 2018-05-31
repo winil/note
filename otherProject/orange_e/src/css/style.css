@@ -1,0 +1,54 @@
+/*登录：login.html*/
+.login-form{padding: .4rem .6rem;}
+.login-form .ui-item{padding: .35rem 0;border-bottom: 1px solid #e1e1e1;}
+.login-form .ui-item .rcon{width: 100%;}
+.login-form .ui-item .ui-input{height: .4rem;line-height: .4rem;font-size: .32rem;color: #333333;width: 100%;}
+.login-form .get-code.disabled{color: #999999;}
+.login-form .code-tip{color: .24rem;color: #fa2537;margin-top: .3rem;}
+.login-box .btn-box{margin-top: 1.8rem;}
+.login-box .call{font-size: .24rem;color: #999999;margin-top: .5rem;padding: 0 .7rem;}
+.login-form .img{width:1.08rem;height:.35rem;background:green;position: absolute;right:0;top:0;}
+.login-form .img>img{width:100%;}
+.login-form .look{display:block;font-size: .24rem;color:#0290e7;text-align:right;padding-top:.2rem;}
+.login-form .look>span{text-decoration: underline;}
+
+/* 资金渠道 funding_channels.html*/
+.funding-channels>a{display:block;width:2rem;height:2rem;-webkit-border-radius: 50%;-ms-border-radius: 50%;-o-border-radius: 50%;-moz-border-radius: 50%;border-radius:50%;background-color:#eaf3fb;color:#2b82f5;font-size:.72rem;text-align:center;line-height: 2rem;margin:1.8rem auto 0;}
+.funding-channels>a:nth-of-type(2){color:#16130b;background-color:#fcf8e2;}
+.funding-channels>p{text-align:center;font-size:.32rem;color:#333;padding-top:.38rem;}
+
+/* 银行授权 */
+.open-account-form .form-box{padding: .75rem .7rem .5rem;background-color: #fff;}
+.open-account-form .ui-item{padding: .25rem 0;border-bottom: 1px solid #e1e1e1;}
+.open-account-form .ui-item:last-child{border:none;}
+.open-account-form .ui-item .rcon{width: 50%;margin-left: .2rem;}
+.open-account-form .ui-item .ui-input{width: 100%;}
+.open-account-form .get-code{position: absolute;top: .28rem;right: 0;font-size: .24rem;color: #fa2537;}
+.open-account-form .get-code.disabled{color: #999999;}
+.open-account .argee-box{margin-top: .4rem;}
+.open-account .argee-box>img{display: block;width: .32rem;height: .32rem;margin-left: .3rem;margin-right: .2rem;}
+.open-account .argee-box>span{font-size: .24rem;color: #333333;}
+.open-account .argee-box>a{font-size: .24rem;color: #0290e7;}
+.open-account .btn-box{margin-top: 1rem;}
+.open-account .result-info>img{display: block;width: 2.35rem;height: 2.62rem;margin: 1.04rem auto 0;}
+.open-account .result-info .text{font-size: .28rem;color: #ff5500;text-align: center;margin-top: .54rem;}
+.bank-grant .bank-tip{font-size: .22rem;color: #ff5500;padding: 0 .7rem;text-align: justify;margin: .6rem 0;}
+.grant-lay-box{background-color: #fff;position: relative;width: 80%;height: auto;border-radius: .2rem;-webkit-border-radius: .2rem;position: absolute;
+	top:50%;left: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);}
+.grant-lay-box .content{padding: 1.2rem .4rem .5rem;}
+.grant-lay-box .content>p{font-size: .28rem;color: #000000;line-height: .45rem;}
+.grant-lay-box .btns{height: 1rem;border-top: 1px solid #e1e1e1;}
+.grant-lay-box .btns>a{display: block;text-align: center;line-height: 1rem;font-size: .32rem;color: #fa2a3c;}
+.grant-lay-box .icon-pay{background:url('../images/open/open_grant.png') no-repeat center;background-size: 100% 100%;width: 1.9rem;height: 1.9rem;position: absolute;top: -0.9rem;left: 50%;transform: translateX(-50%);-webkit-transform: translateX(-50%);}
+.bank-grant .grant-info .pic{display: block;width: 2.26rem;height: 2.41rem;margin: 2rem auto 0;}
+.bank-grant .grant-info .result{font-size: .32rem;color: #333333;text-align: center;margin-top: .45rem;}
+.bank-grant .btn-box{margin-top: .8rem;}
+.bank-grant .fail-reason{padding-left: 1.57rem;margin-top: .7rem;}
+.bank-grant .fail-reason>p{font-size: .24rem;color: #999999;line-height: .5rem;}
+.bank-grant .wait-reason{margin-top: .7rem;padding: 0 1rem;}
+.bank-grant .wait-reason>p{font-size: .24rem;color: #999999;line-height: .5rem;text-align: justify;}
+.bank-grant .label{color:#333;}
+.to-support-bank{color:#44a5ec;}
+.open-account-text{padding: .3rem .72rem 0 .82rem;line-height:.42rem;text-align: justify;font-size: .22rem;color: #666;}
+.bank-grant #bank-select{position:absolute;right:0;top:.25rem;border:none;color:#0290e7;font-size:.24rem;outline:none;border-left:1px solid #e1e1e1;padding-left:.4rem;background-color:#fff;text-decoration: underline;}
+

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no,email=no" />
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<script type="text/javascript" src="../../js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<title>银行授权</title>
+	<script type="text/javascript">
+		(function (doc, win) {var docEl = doc.documentElement,resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',recalc = function () {var clientWidth = docEl.clientWidth;if (!clientWidth) return;if(clientWidth>=750){docEl.style.fontSize = '50px';}else{docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';}};if (!doc.addEventListener) return;win.addEventListener(resizeEvt, recalc, false);doc.addEventListener('DOMContentLoaded', recalc, false);})(document, window);
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="bank-grant">
+			<div class="personal open-account-form">
+				<div class="form-box">
+					<div class="ui-item">
+						<label class="label">真实姓名</label>
+						<div class="rcon">
+							<input type="text" class="ui-input" placeholder="请输入真实姓名" />
+						</div>
+					</div>
+					<div class="ui-item">
+						<label class="label">身份证号</label>
+						<div class="rcon">
+							<input type="text" class="ui-input" placeholder="请输入身份证号" name="idCard" maxlength="18"/>
+						</div>
+					</div>
+					<div class="ui-item">
+						<label class="label">银行卡号</label>
+						<div class="rcon">
+							<input type="text" class="ui-input" placeholder="请输入银行卡号" name="bankNum" maxlength="19"/>
+						</div>
+					</div>
+					<div class="ui-item">
+						<label class="label">预留银行卡手机号</label>
+						<div class="rcon">
+							<input type="text" class="ui-input" placeholder="请输入预留银行卡手机号" name="mobile" maxlength="11"/>
+						</div>
+					</div>
+					<div class="ui-item">
+						<label class="label">银行卡归属行</label>
+						<div class="rcon">
+							<input type="text" class="ui-input input-select" placeholder="请选择归属行" name="bank" disabled/>
+						</div>
+						<select name="bank-select" id="bank-select">
+							<option value="0">选择归属行</option>
+							<option value="平安银行">平安银行</option>
+							<option value="中国工商银行">中国工商银行</option>
+							<option value="中国农业银行">中国农业银行</option>
+							<option value="中国银行">中国银行</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="btn-box">
+				<input type="button" class="ui-btn uibtn-gray submit-sure" disabled id="submit-sure" value="发送验证" />
+			</div>
+		</div>
+	</div>
+	<!--弹层-->
+	<div class="layer-grant-fixed fixed-lay" style="display: none;">
+			<div class="grant-lay-box">
+				<div class="icon-pay"></div>
+				<div class="content">
+					<p>平安银行即将发送一条验证短信，请您依据指引回复，确认同意开通授权。</p>
+				</div>
+				<div class="btns"><a href="javascript:void(0);" id="iknow">我知道了</a></div>
+			</div>
+		</div>
+</body>
+<script type="text/javascript">
+$(function(){
+
+	var inputState = {"inputFlag":0,"selectFlag":0};
+	$('#submit-sure').on('click',function(){
+		var mobile = $('input[name=mobile]').val();
+		var idCard = $('input[name=idCard]').val();
+		var bankNum = $('input[name=bankNum]').val();
+		
+		if(!(/^\d{15,18}$/.test(idCard))){
+			layer.msg('请输入正确的身份证号码！')
+		  	return false;
+		}
+		if(!(/^[1-9]\d{14,18}$/.test(bankNum))){
+			layer.msg('请输入正确的银行卡号码！')
+		  	return false;
+		}
+		if(!(/^1\d{10}$/.test(mobile))){
+		 	layer.msg('请输入正确的手机号码！')
+		  	return false;
+		}
+		$('.layer-grant-fixed').show();
+		$('#iknow').on('click',function(){
+			$('.layer-grant-fixed').hide();
+		});
+	});
+	$("#bank-select").on("change",function(){
+		
+		if($(this).val() != 0){
+			$("input[name=bank]").val($(this).val());
+			inputState.selectFlag = 1;
+			if(inputState.inputFlag){
+				$('#submit-sure').removeClass("uibtn-gray").addClass('uibtn-pink').removeAttr('disabled');
+			}
+		}else{
+			$("input[name=bank]").val('');
+			inputState.selectFlag = 0;
+			$('#submit-sure').removeClass("uibtn-pink").addClass('uibtn-gray').attr('disabled',true);
+		}
+	})
+	$('input[type=text]').not(".input-select").on('keyup',function(){
+		var _obj = $(this),inputTexts = $('input[type=text]').not(".input-select"),flag = false;
+		if (_obj.val()) {
+			for (var i = 0; i < inputTexts.length; i++) {
+				if ($(inputTexts[i]).val().trim()) {
+					flag = true;
+					continue;
+				}else{
+					flag = false;
+					break;
+				}
+			}
+			if (flag) {
+				inputState.inputFlag = 1;
+				if(inputState.selectFlag){
+					$('#submit-sure').removeClass("uibtn-gray").addClass('uibtn-pink').removeAttr('disabled');
+				}else{
+					$('#submit-sure').removeClass("uibtn-pink").addClass('uibtn-gray').attr('disabled',true);
+				}
+				
+			}
+		} else {
+			$('#submit-sure').removeClass("uibtn-pink").addClass('uibtn-gray').attr('disabled',true);
+			inputState.inputFlag = 0;
+		}
+	});
+});
+</script>
+</html>

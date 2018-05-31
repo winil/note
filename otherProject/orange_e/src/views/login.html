@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no,email=no" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<script type="text/javascript" src="../js/jquery-2.1.0.min.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
+	<title>橙E支付授权登录</title>
+	<script type="text/javascript">
+		(function (doc, win) {var docEl = doc.documentElement,resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',recalc = function () {var clientWidth = docEl.clientWidth;if (!clientWidth) return;if(clientWidth>=750){docEl.style.fontSize = '50px';}else{docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';}};if (!doc.addEventListener) return;win.addEventListener(resizeEvt, recalc, false);doc.addEventListener('DOMContentLoaded', recalc, false);})(document, window);
+	</script>
+</head>
+<body style="background-color: #fff;">
+	<div class="container">
+		<div class="login-box">
+			<div class="login-form">
+				<div class="ui-item">
+					<div class="rcon">
+						<input type="text" class="ui-input" placeholder="请输入账号" name="account"/>
+					</div>
+				</div>
+				<div class="ui-item flexbox pack-justify">
+					<div class="rcon">
+						<input type="password" class="ui-input" placeholder="请输入密码" name="password" />
+					</div>
+				</div>
+				<div class="ui-item flexbox pack-justify">
+					<div class="rcon">
+						<input type="text" class="ui-input" placeholder="请输入验证码" name="code" maxlength="4" />
+						<div class="img"><img src="../images/account/11_03.png" alt=""></div>
+					</div>
+				</div>
+				<div class="look"><span>看不清楚？换一个</span></div>
+			</div>
+			<div class="btn-box">
+				<input type="button" class="ui-btn uibtn-gray submit-login" id="submit-login" disabled value="登录" />
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$("#submit-login").on("click",function(){
+		if($("input[name=code]").val() != 1716){
+			layer.msg("验证码错误，请重新输入！");
+		}
+	});
+	$('.rcon input').on('keyup',function(){
+		var _obj = $(this),inputTexts = $('.rcon input'),flag = false;
+		if (_obj.val()) {
+			for (var i = 0; i < inputTexts.length; i++) {
+				if ($(inputTexts[i]).val().trim()) {
+					flag = true;
+					continue;
+				}else{
+					flag = false;
+					break;
+				}
+			}
+			if (flag) {
+				$('#submit-login').removeClass("uibtn-gray").addClass('uibtn-pink').removeAttr('disabled');
+			}
+		} else {
+			$('#submit-login').removeClass("uibtn-pink").addClass('uibtn-gray').attr('disabled',true);
+		}
+	});
+	$(".look>span").on("click",function(){
+		alert("换一个");
+	});
+</script>
+</html>
