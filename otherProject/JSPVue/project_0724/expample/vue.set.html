@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.set</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+       <p>{{count}}</p>
+       <ul>
+           <li v-for="item in arr">{{item}}</li>
+       </ul>
+       <button onclick="add()">add</button>
+   </div>
+
+   <script>
+       function add(){
+                // app.arr[1] = "new"; 不成功
+           Vue.set(app.arr,1,'I am change');
+       }
+
+       var outData = {count:1,name:"yun",arr:[1,2,3]};
+       var app = new Vue({
+           el:"#app",
+           data:outData,
+       });
+
+       //1.
+       Vue.set(outData,'count',6);
+       //2.
+       app.count = 8;
+       //3.
+       outData.count = 10;
+
+       /**
+       为什么要有Vue.set的存在?
+
+        由于Javascript的限制，Vue不能自动检测以下变动的数组。
+
+        *当你利用索引直接设置一个项时，vue不会为我们自动更新。
+
+        *当你修改数组的长度时，vue不会为我们自动更新。
+       **/
+   </script>
+</body>
+</html>

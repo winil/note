@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>helloWorld</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <button @click="add">add</button>
+        <button @click="destroy">destroy</button>
+    </div>
+    <script>
+        var outData = {message:1};
+        var app = new Vue({
+            el:"#app",
+            data:outData,
+            methods:{
+                add(){
+                    this.message++;
+                },
+                destroy(){
+                    this.$destroy();
+                }
+            },
+            // 生命周期
+            beforeCreate(){
+                console.log('1-beforeCreate 初始化之后');
+                this.message = 2;
+            },
+            created(){
+                console.log('2-created 创建完成');
+                this.message = 3;
+            },
+            beforeMount(){
+                console.log('3-beforeMount 挂载之前');
+                // this.message = 4;
+            },
+            mounted:function(){
+                console.log('4-mounted 被创建');
+                // this.message = 5;
+            },
+            beforeUpdate(){
+                console.log('5-beforeUpdate 数据更新前');
+            },
+            updated(){
+                console.log('6-updated 被更新后');
+            },
+            activated(){
+                console.log('7-activated');
+            },
+            deactivated(){
+                console.log('8-deactivated');
+            },
+            beforeDestroy:function(){
+                console.log('9-beforeDestroy 销毁之前');
+            },
+            destroyed:function(){
+                console.log('10-destroyed 销毁之后')
+            }
+        });
+    </script>
+</body>
+</html>

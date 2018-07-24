@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.directive</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        {{message}}
+        <p v-cgcolor="color">color{{num}}</p>
+        <button @click="add">+</button>
+    </div>
+    
+    <script>
+        /*el: 指令所绑定的元素，可以用来直接操作DOM。
+
+        binding:  一个对象，包含指令的很多信息。
+
+        vnode: Vue编译生成的虚拟节点
+        */
+        /*Vue.directive('cgcolor',function(el,binding,vnode){
+            console.log(el,binding,vnode);
+            el.style = 'color:'+binding.value;
+        });*/
+
+        Vue.directive('cgcolor',{
+            bind:function(el,binding,vnode){
+                console.log('1 - bind');
+                el.style = 'color:'+binding.value;
+            },
+            inserted:function(){//绑定到节点
+                console.log('2 - inserted');
+            },
+            update:function(){//组件更新
+                console.log('3 - update');
+            },
+            componentUpdated:function(){//组件更新完成
+                console.log('4 - componentUpdated');
+            },
+            unbind:function(){//解绑
+                console.log('1 - bind');
+            }
+        })
+
+        var vm = new Vue({
+            el:"#root",
+            data:{
+                message:"hello",
+                color:"gold",
+                num:1,
+            },
+            methods:{
+                add(){
+                    this.num++;
+                },
+            }
+        });
+    </script>
+</body>
+</html>

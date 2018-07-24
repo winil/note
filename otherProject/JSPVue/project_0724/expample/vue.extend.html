@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue.extend-扩展实例构造器</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+   <baidu></baidu>
+   <div id="tag"></div>
+
+   <script>
+       var authorExtend = Vue.extend({
+           template:'<p><a :href="url">{{name}}</a></p>',
+           data(){
+               return{
+                   name:'baidu',
+                   url:'http://www.baidu.com'
+               }
+           }
+       });
+        //挂载    
+       new authorExtend().$mount('baidu');
+
+       new authorExtend().$mount('#tag');
+   </script>
+</body>
+</html>

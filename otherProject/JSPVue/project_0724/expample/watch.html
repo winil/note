@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>watch</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <p>num:{{num}}</p>
+        <button @click="handleClick">button</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"helloWorld",
+                num:16
+            },
+            methods:{
+                handleClick(){
+                    this.num += 5;
+                }
+            },
+            watch:{
+                num(newVal,oldVal){
+                    console.log(newVal,oldVal);
+                }
+            }
+        });
+        
+        // 用实例属性写watch监控，可降低程序的耦合度
+        app.$watch('num',(newVal,oldVal)=>console.log(newVal,oldVal));
+    </script>
+</body>
+</html>

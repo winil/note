@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.js"></script>
+    <title>组件</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <com val="global"></com>
+        <com1 val="com1"></com1>
+        <com2 val="com2"></com2>
+        <com3 val="ff"></com3>
+    </div>
+    <hr>
+    <div id="app2">
+        <jspang></jspang>
+    </div>
+    <hr>
+    <div id="app3">
+        <component :is="which"></component>
+        <button @click="changeCom">changeCom</button>
+    </div>
+    <script>
+        // 全局注册
+        Vue.component('com',{
+            template:'<div>hi,I am a {{val}} component ,{{mes}}</div>',
+            props:['val'],
+            data(){return {mes:'hello'}}
+        })
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                message:"helloWorld"
+            },
+            components:{
+                'com1':{
+                    template:'<div>I am {{val}}</div>',
+                    props:['val']
+                },
+                'com2':{
+                    template:'<div>I am {{val}}</div>',
+                    props:['val']
+                },
+                'com3':{
+                    template:`<div>
+                            <p> fat{{val}}</p>
+                            <city></city>
+                    </div>`,
+                    props:['val'],
+                    components:{
+                        "city":{
+                            template:`<div>sun</div>`
+                        }
+                    }
+                }
+            }
+
+        });
+
+        // 父子组件的嵌套
+        var city={
+           template:`<div>Sichuan of China</div>`
+       }
+        var jspang = {
+            template:`<div>
+                    <p> Panda from China!</p>
+                    <city></city>
+                    <com></com>
+            </div>`,
+            components:{
+                "city":city
+            }
+        }
+        var app=new Vue({
+            el:'#app2',
+            components:{
+                "jspang":jspang,
+            }
+           
+        });
+        
+        var componentA = {
+            template:`<div>componentA<com></com></div>`
+        }
+        var componentB = {
+            template:`<div>componentB</div>`
+        }
+        // Component 标签
+        var app3 = new Vue({
+            el:"#app3",
+            data:{
+                which:'componentA'
+            },
+            components:{
+                componentA:componentA,
+                componentB:componentB
+            },
+            methods:{
+                changeCom(){
+                    this.which = this.which == 'componentA' ? 'componentB' : 'componentA';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
